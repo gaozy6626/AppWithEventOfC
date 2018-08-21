@@ -2,9 +2,9 @@
 #define _LIST_H
 
 
-#define list_for_each_entry(pos, list, node)							\
+#define list_for_each_entry(pos, list, node)					\
 	for (node = list?(list)->head:NULL, pos = node?node->data:NULL;		\
-	     pos; 															\
+	     pos; 								\
 	     node = node->next, pos = node?node->data:NULL)
 
 
