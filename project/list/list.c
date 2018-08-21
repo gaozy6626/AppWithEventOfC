@@ -5,43 +5,43 @@
 list_t *
 list_create()
 {
-	list_t *l = (list_t*)malloc(sizeof(list_t));
-	if (!l) {
-		printf("******list create fail!******\n");
-		return NULL;
-	}
-	
-	l->head = NULL;
-	l->tail = NULL;
-	l->nodes = 0;
-	
-	return l;
+    list_t *l = (list_t*)malloc(sizeof(list_t));
+    if (!l) {
+        printf("******list create fail!******\n");
+        return NULL;
+    }
+
+    l->head = NULL;
+    l->tail = NULL;
+    l->nodes = 0;
+
+    return l;
 }
 
 int
 list_append(list_t *l, void *data)
 {
-	if (!l || !data)
-		return -1;
+    if (!l || !data)
+        return -1;
+
+    struct node *n = (struct node *)malloc(sizeof(struct node));
+    if (!n) {
+        printf("******list append fail!******");
+	return -1;
+    }
+    n->data = data;
+    n->prev = n->next = NULL;
+
+    if (!l->head)
+        l->head = n;
+    else
+        l->tail->next = n;
+
+    n->prev = l->tail;
+    l->tail = n;
+    l->nodes++;
 	
-	struct node *n = (struct node *)malloc(sizeof(struct node));
-	if (!n) {
-		printf("******list append fail!******");
-		return -1;
-	}
-	n->data = data;
-	n->prev = n->next = NULL;
-	
-	if (!l->head)
-		l->head = n;
-	else
-		l->tail->next = n;
-	
-	n->prev = l->tail;
-	l->tail = n;
-	l->nodes++;
-	
-	return 0;
+    return 0;
 }
 
 void *
