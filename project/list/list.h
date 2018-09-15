@@ -1,12 +1,10 @@
 #ifndef _LIST_H
 #define _LIST_H
 
-
-#define list_for_each_entry(pos, list, node)							\
-	for (node = list?(list)->head:NULL, pos = node?node->data:NULL;		\
-	     pos; 															\
-	     node = node->next, pos = node?node->data:NULL)
-
+#define list_for_each_entry(pos, list, node)				        	\
+        for (node = list?(list)->head:NULL, pos = node?node->data:NULL;	        \
+             pos; 							        	\
+             node = node->next, pos = node?node->data:NULL)
 
 struct node
 {
@@ -19,8 +17,8 @@ struct node
 typedef struct list
 {
     struct node *head;
-	struct node *tail;
-	int		nodes;
+    struct node *tail;
+    int	         nodes;
 } list_t;
 
 list_t * list_create();
