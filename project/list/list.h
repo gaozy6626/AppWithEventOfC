@@ -22,8 +22,8 @@ typedef struct list
 } list_t;
 
 list_t * list_create();
-
-int list_append(list_t *l, void *data);
+int list_append_data(list_t *l, void *data);
+int list_append_node(list_t *l, struct node *n);
 void * list_node_remove(list_t *l, struct node *rec);
 void list_remove(list_t *l, void *data);
 void * list_find(list_t *l, void *key, int (*match)(void *elem, void *key));

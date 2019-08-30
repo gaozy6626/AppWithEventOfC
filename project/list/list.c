@@ -19,7 +19,33 @@ list_create()
 }
 
 int
-list_append(list_t *l, void *data)
+list_append_data(list_t *l, void *data)
+{
+    if (!l || !data)
+        return -1;
+
+    struct node *n = (struct node *)malloc(sizeof(struct node));
+    if (!n) {
+        printf("******list append fail!******");
+	return -1;
+    }
+    n->data = data;
+    n->prev = n->next = NULL;
+
+    if (!l->head)
+        l->head = n;
+    else
+        l->tail->next = n;
+
+    n->prev = l->tail;
+    l->tail = n;
+    l->nodes++;
+	
+    return 0;
+}
+
+int
+list_append_node(list_t *l, struct node *n)
 {
     if (!l || !data)
         return -1;
